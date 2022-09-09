@@ -1,11 +1,11 @@
-package com.example.armeriagrpcexample
+package com.example.server
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ArmeriaGrpcExampleApplication
+class ServerApplication
 
 fun main(args: Array<String>) {
-    runApplication<ArmeriaGrpcExampleApplication>(*args)
+    runApplication<ServerApplication>(*args)
 }

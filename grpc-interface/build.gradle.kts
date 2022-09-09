@@ -1,5 +1,7 @@
 import com.google.protobuf.gradle.*
 
+val grpcVersion = "3.21.5"
+
 apply(plugin = "com.google.protobuf")
 
 configurations.forEach {
@@ -12,16 +14,16 @@ dependencies {
     compileOnly("javax.annotation:javax.annotation-api:1.3.2")
 
     // grpc
-    api("com.google.protobuf:protobuf-java-util:3.14.0")
-    api("io.grpc:grpc-kotlin-stub:1.0.0")
-    api("io.grpc:grpc-protobuf:1.34.0")
-    api("io.grpc:grpc-netty-shaded:1.34.0")
+    api("com.google.protobuf:protobuf-java-util:$grpcVersion")
+    api("io.grpc:grpc-kotlin-stub:1.3.0")
+    api("io.grpc:grpc-protobuf:1.49.0")
+    api("io.grpc:grpc-netty-shaded:1.49.0")
 }
 
 protobuf {
     generatedFilesBaseDir = "$projectDir/build/generated/source"
     protoc {
-        artifact = "com.google.protobuf:protoc:3.14.0"
+        artifact = "com.google.protobuf:protoc:$grpcVersion"
     }
     plugins {
         id("grpc") {
@@ -51,4 +53,8 @@ sourceSets {
         java.srcDir("build/generated/source/main/grpc")
         java.srcDir("build/generated/source/main/java")
     }
+}
+
+tasks.withType<Jar> {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
